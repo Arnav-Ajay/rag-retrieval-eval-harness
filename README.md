@@ -27,6 +27,8 @@ Without measuring retrieval behavior directly, these cases are indistinguishable
 
 This example isolates retrieval and provides simple, human-grounded diagnostics to answer those questions.
 
+---
+
 ## What This Example Is (and Is Not)
 
 This example:
@@ -39,6 +41,8 @@ This example does NOT:
 - evaluate answer correctness
 - claim general performance conclusions
 
+---
+
 ## How It Works (High Level)
 
 1. Documents are chunked using a fixed strategy
@@ -47,12 +51,32 @@ This example does NOT:
 4. Retrieved chunks are logged at multiple depths
 5. Retrieval results are compared against human-labeled relevant chunks
 
+---
+
 ## How to Run
 
+### Input PDFs and Chunking
+
+Input pdfs are located in data/input_pdfs.
+
+Export chunks to CSV, use: 
 ```bash
 pip install -r requirements.txt
+python app.py --export-chunks
+```
+
+Exports are written to data/chunks_and_questions/chunks_output.csv
+
+Questions were manually created and saved under data/chunks_and_questions/question_input.csv
+
+### Evaluation
+
+For evaluation, run:
+
+```bash
 python app.py --run-retrieval-eval
 ```
 
 Outputs are written to data/results_and_summaries/.
 
+---

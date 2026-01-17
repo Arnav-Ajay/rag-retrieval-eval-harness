@@ -1,0 +1,12 @@
+Intent Type,n,% Top-K (Hybrid)
+Definition -> pure retrieval recall,17,~0%
+Mechanism -> localized reasoning,13,~0%
+Process -> multi-chunk sequencing,5,~0%
+Comparative -> ranking + synthesis,9,~0%
+Capability -> abstraction + summarization,7,~0%
+Principle -> conceptual grounding,4,~0%
+Historical -> provenance precision,3,~0%
+,,
+,,
+,,
+,,
