@@ -163,6 +163,4 @@ All improvements can be measured relative to the same baseline.
 
 The focus is **measurement before optimization**.
 
-```
-
 ---
