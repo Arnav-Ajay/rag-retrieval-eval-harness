@@ -1,6 +1,6 @@
 # RAG Retrieval Evaluation Harness
 
-This repository provides a **minimal, runnable reference** for evaluating *retrieval behavior* in Retrieval-Augmented Generation (RAG) systems.
+This repository provides a **minimal, runnable reference** for evaluating retrieval behavior in Retrieval-Augmented Generation (RAG) systems.
 
 Most RAG examples focus on whether the system produces an answer.  
 This example focuses on an earlier and often unmeasured question:
@@ -23,7 +23,7 @@ Common explanations include:
 
 Without measuring retrieval behavior directly, these cases are indistinguishable.
 
-This example isolates retrieval and provides **simple, human-grounded diagnostics** to help determine where failures occur.
+This example isolates retrieval and provides **simple, human-labeled diagnostics** to help determine where failures occur.
 
 ---
 
@@ -52,6 +52,8 @@ This example isolates retrieval and provides **simple, human-grounded diagnostic
 5. Results are compared against human-labeled relevant chunks
 
 No generation logic is required to observe retrieval behavior.
+
+This example is self-contained and does not depend on other repositories.
 
 ---
 
@@ -94,7 +96,7 @@ Evaluation questions are manually created and stored in:
 data/chunks_and_questions/question_input.csv
 ```
 
-Each question is paired with a human-identified relevant chunk.
+Each question is paired with a human-labeled relevant chunk.
 
 ---
 
@@ -116,14 +118,12 @@ data/results_and_summaries/
 
 The evaluation output CSV includes:
 
-* `question_id`
-* `gold_chunk_id`
-* `gold_doc_id`
-* `retrieved chunk IDs` (ordered by similarity)
-* `rank of first relevant chunk` (manually entered)
-* whether the relevant chunk appears in generation Top-K (manually entered)
+- question and gold reference identifiers
+- retrieved chunk IDs ordered by similarity
+- rank of the first relevant chunk (if retrieved within inspection depth)
+- whether the relevant chunk appears in generation Top-K
 
-These outputs make retrieval success and failure **explicit and inspectable**.
+This makes retrieval success and failure directly inspectable.
 
 ---
 

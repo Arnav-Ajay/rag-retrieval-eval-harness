@@ -28,8 +28,6 @@ def run_retrieval_evaluation(args, vector_store, inspect_k=50):
             f"Questions CSV must contain columns: {required_cols}"
         )
 
-
-
     for _, row in questions_df.iterrows():
         question_id = row["question_id"]
         question_text = row["question_text"]
@@ -40,14 +38,24 @@ def run_retrieval_evaluation(args, vector_store, inspect_k=50):
         
         retrieved_chunk_ids = [chunk_id for chunk_id, _, _, _ in results]
         retrieved_chunk_ids_str = "|".join(map(str, retrieved_chunk_ids))
-        
+
+        rank = None
+        retrieved_in_top_k = "no"
+
+        for i, (chunk_id, doc_id, _, _) in enumerate(results):
+            if chunk_id == gold_chunk_id and doc_id == gold_doc_id:
+                rank = i + 1
+                retrieved_in_top_k = "yes" if rank <= GENERATION_TOP_K else "no"
+                break
+
         evaluation_results.append({
             "question_id": question_id,
             "question": question_text,
             "gold_chunk_id": gold_chunk_id,
             "gold_doc_id": gold_doc_id,
             "retrieved_chunk_ids": retrieved_chunk_ids_str,
-
+            "rank_of_first_relevant": rank,
+            "retrieved_in_top_k": retrieved_in_top_k,
         })
 
     # Save evaluation results to CSV
